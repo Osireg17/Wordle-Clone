@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let guessedWordCount = 0;
 
 
+
     function getNewWord() {
         fetch(
             `https://wordsapiv1.p.rapidapi.com/words/?random=true&lettersMin=5&lettersMax=5`,
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then((res) => { // then take the result and assign it to the word variable
                 word = res.word;
+                console.log(word)
             })
             .catch((err) => {
                 console.error(err);
