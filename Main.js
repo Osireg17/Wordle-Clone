@@ -42,8 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function getCurrentWordArray(){
         const numberOfGuessedWords = guessedWords.length // this gets the length of the guessed words so far within the array
-        return guessedWords[numberOfGuessedWords - 1]
+        return guessedWords[numberOfGuessedWords - 1] // this returns the letter at the specific index
     }
+
+
     function updateGuessedWords(letter) {
         const currentWordArray = getCurrentWordArray()
 
@@ -138,13 +140,29 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         }
 
+    function DeleteWord(){
+        const currentWordArray = getCurrentWordArray()
+        const removedLetter = currentWordArray.pop() // this is just an empty list of letters
+
+        guessedWords[guessedWords.length - 1] = currentWordArray //This is reducing the index of the array by one and reassigning it the the currentWordArray
+
+        const lastLetterElement = document.getElementById(String(spaceAvaliable - 1))
+        spaceAvaliable = spaceAvaliable - 1  // This increase the space available 
+        
+        lastLetterElement.textContent = ""
+    }
+
     for (let i = 0; i < keys.length; i++){
         keys[i].onclick = ({target}) => {
             const letter = target.getAttribute('data-key') // this gets the data from the html file 
             
 
             if(letter === 'enter') {
-                return SubmitWord()
+                return SubmitWord();
+            }
+
+            if(letter === 'del'){
+                return DeleteWord();
             }
             updateGuessedWords(letter)
         }
